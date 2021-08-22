@@ -26,11 +26,20 @@ jobs:
       with:
           images: ghcr.io/${{ github.repository }}
 
-    - name: Build and push Docker image
-      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+#     - name: Build and push Docker image
+#       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+#       with:
+#           context: .
+#           file: Dockerfile
+#           push: true
+#           tags: ${{ steps.meta.outputs.tags }}
+#           labels: ${{ steps.meta.outputs.labels }}
+    - name: Docker Build & Push Action
+      # You may pin to the exact commit or the version.
+      # uses: mr-smithers-excellent/docker-build-push@b74f2665a4a826412bdb4c355deb6fdc2e80d42b
+      uses: mr-smithers-excellent/docker-build-push@v5.5
       with:
-          context: .
-          file: Dockerfile
-          push: true
+          # Tags override for Docker image
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+         
