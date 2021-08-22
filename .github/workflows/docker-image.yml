@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: view-tree-files
+      run: ls -lsha | cat 
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
       with:
@@ -40,8 +42,6 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5.5
       with:
           image: ${{ steps.meta.outputs.tags }}
-          # Tags override for Docker image
-          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           registry: ghcr.io
          
