@@ -43,4 +43,5 @@ jobs:
           # Tags override for Docker image
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          registry: ghcr.io
          
