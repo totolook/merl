@@ -35,6 +35,19 @@ jobs:
       run: |
         docker build . -t $DOCKER_IMAGE
         docker push $DOCKER_IMAGE
+    
+    
+    - name: Extract metadata (tags, labels) for Docker for java11
+      id: meta11
+      uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+      with:
+          images: ghcr.io/${{ github.repository }}:j11
+    - name: Docker build j11
+      env: 
+        DOCKER_IMAGE: ghcr.io/${{ github.repository }}:j11
+      run: |
+        docker build . -f Dockerfile.j11 -t $DOCKER_IMAGE
+        docker push $DOCKER_IMAGE
 
 #     - name: Build and push Docker image
 #       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
